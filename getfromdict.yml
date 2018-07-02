@@ -1,0 +1,21 @@
+---
+
+#
+# e.g.
+#
+#     "ansible_facts.eth0.ipv6": [
+#         {
+#             "address": "fe80::2ec2:60ff:fe48:bd62",
+#             "prefix": "64",
+#             "scope": "link"
+#         }
+#     ]
+#
+
+- name: Get item out of dict
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+  - debug: var=item.address
+    loop: "{{ ansible_facts.eth0.ipv6 }}"
